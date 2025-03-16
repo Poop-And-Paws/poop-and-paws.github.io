@@ -11,7 +11,7 @@ export default function UploadButton() {
         console.log('file', file)
         if (!file || !user) return alert("請選擇圖片並登入");
 
-        const filePath = `${user.id}/${Date.now()}-${file.name}`;
+        const filePath = `${user.id}/${Date.now()}${file.name.split(".").pop()}`;
         const { error } = await supabase.storage.from("images").upload(filePath, file);
 
         if (error) console.error("上傳失敗", error);
