@@ -17,7 +17,12 @@ export default function UserButton() {
     };
 
     const handleLoginIn = () => {
-        supabase.auth.signInWithOAuth({ provider: "google" });
+        supabase.auth.signInWithOAuth({
+            provider: "google",
+            options: {
+                redirectTo: window.location.origin,
+            }
+        });
     }
 
     const handleLoginLogout = () => {
@@ -44,7 +49,7 @@ export default function UserButton() {
                 open={Boolean(anchorEl)}
                 onClose={handleMenuClose}
             >
-                { !user
+                {!user
                     ? <MenuItem onClick={handleLoginIn}>Login</MenuItem>
                     : <MenuItem onClick={handleLoginLogout}>Logout</MenuItem>
                 }
