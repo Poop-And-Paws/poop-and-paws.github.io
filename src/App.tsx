@@ -64,28 +64,28 @@ export default function App() {
     }
   }
 
-    // 🖌 取得畫布圖像並上傳到 Supabase
-    const uploadDrawing = async () => {
-      if (!canvasRef.current) return;
-  
-      // 取得畫布的 Base64 圖像
-      const drawingData = canvasRef.current.getDataURL("image/png");
-      const blob = await (await fetch(drawingData)).blob();
-      const fileName = `${user.id}/drawing-${Date.now()}.png`;
-  
-      // 上傳到 Supabase Storage
-      const { data, error } = await supabase.storage
-        .from("images") // ⚠️ 確保 Supabase Storage 有 `drawings` Bucket
-        .upload(fileName, blob, { contentType: "image/png" });
-  
-      if (error) {
-        console.error("上傳失敗", error);
-        alert("上傳失敗：" + error.message);
-      } else {
-        console.log("上傳成功", data);
-      }
-      fetchAllImages();
-    };
+  // 🖌 取得畫布圖像並上傳到 Supabase
+  const uploadDrawing = async () => {
+    if (!canvasRef.current) return;
+
+    // 取得畫布的 Base64 圖像
+    const drawingData = canvasRef.current.getDataURL("image/png");
+    const blob = await (await fetch(drawingData)).blob();
+    const fileName = `${user.id}/drawing-${Date.now()}.png`;
+
+    // 上傳到 Supabase Storage
+    const { data, error } = await supabase.storage
+      .from("images") // ⚠️ 確保 Supabase Storage 有 `drawings` Bucket
+      .upload(fileName, blob, { contentType: "image/png" });
+
+    if (error) {
+      console.error("上傳失敗", error);
+      alert("上傳失敗：" + error.message);
+    } else {
+      console.log("上傳成功", data);
+    }
+    fetchAllImages();
+  };
 
   return (
     <div style={{ textAlign: "center", padding: "20px" }}>
