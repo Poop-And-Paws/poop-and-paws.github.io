@@ -1,4 +1,5 @@
 import React from "react";
+import ToolBar from './components/Toolbar';
 import { AppBar, Avatar, Box, Button, Container, CssBaseline, Grid, Paper, Toolbar, Typography } from "@mui/material";
 
 const images = [
@@ -22,16 +23,8 @@ export default function App() {
     >
       <CssBaseline />
 
-      {/* Header */}
-      <AppBar position="static" color="transparent" elevation={0} sx={{ padding: "8px 16px" }}>
-        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Typography variant="h6" color="primary">
-            主要畫面
-          </Typography>
-          <Avatar src="https://source.unsplash.com/50x50/?person" />
-        </Toolbar>
-      </AppBar>
-
+      <ToolBar />
+    
       {/* Banner */}
       <Paper
         elevation={3}
